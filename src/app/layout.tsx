@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { UserProvider } from "@/contexts/UserContext";
+import Navbar from "@/components/Layout/Navbar";
+import ChatBox from "@/components/ChatAssistant/ChatBox";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
       >
-        {children}
+        <UserProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <Navbar />
+            <ChatBox />
+            {children}
+          </TooltipProvider>
+        </UserProvider>
       </body>
     </html>
   );

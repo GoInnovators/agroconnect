@@ -1,103 +1,184 @@
-import Image from "next/image";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Sprout,
+  TrendingUp,
+  Shield,
+  Truck,
+  Brain,
+  Users,
+  MapPin,
+  Clock,
+} from "lucide-react";
+import Link from "next/link";
 
-export default function Home() {
+const Home = () => {
+  const features = [
+    {
+      icon: Brain,
+      title: "AI-Powered Insights",
+      description:
+        "Advanced demand forecasting and quality grading using computer vision and machine learning",
+    },
+    {
+      icon: TrendingUp,
+      title: "Dynamic Pricing",
+      description:
+        "Real-time market pricing based on supply, demand, and quality metrics",
+    },
+    {
+      icon: Shield,
+      title: "Finance & Insurance",
+      description:
+        "Access to credit and insurance products tailored for smallholder farmers",
+    },
+    {
+      icon: Truck,
+      title: "Route Optimization",
+      description:
+        "Efficient logistics and cold-chain solutions to reduce costs and improve freshness",
+    },
+    {
+      icon: Users,
+      title: "Marketplace Connect",
+      description:
+        "Direct connection between farmers and verified buyers with secure transactions",
+    },
+    {
+      icon: MapPin,
+      title: "Offline Access",
+      description:
+        "USSD/IVR support for areas with limited internet connectivity",
+    },
+  ];
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative pt-20 pb-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-field opacity-10"></div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+              Empowering Smallholder Farmers with AI
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              AgriAI Connect bridges the gap between farmers and markets through
+              intelligent forecasting, quality grading, and optimized logistics
+              solutions
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild className="agri-button text-lg px-8 py-4">
+                <Link href="/auth">Get Started Today</Link>
+              </Button>
+              <Button
+                variant="outline"
+                asChild
+                className="border-primary text-primary hover:bg-primary/10 text-lg px-8 py-4"
+              >
+                <Link href="/dashboard">View Demo</Link>
+              </Button>
+            </div>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-10 opacity-20 animate-float">
+            <Sprout className="h-16 w-16 text-primary" />
+          </div>
+          <div className="absolute top-32 right-10 opacity-20 animate-float delay-1000">
+            <TrendingUp className="h-12 w-12 text-primary" />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 px-4 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 animate-slide-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Comprehensive Agricultural Solutions
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              From demand forecasting to route optimization, we provide
+              end-to-end solutions for modern agricultural challenges
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card
+                key={index}
+                className="agri-card hover:shadow-glow transition-all duration-300 transform hover:-translate-y-2 animate-grow"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className="p-3 bg-gradient-primary rounded-lg">
+                      <feature.icon className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 px-4 bg-gradient-earth">
+        <div className="max-w-7xl mx-auto text-center text-white">
+          <h2 className="text-3xl font-bold mb-12">
+            Transforming South African Agriculture
+          </h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { number: "10,000+", label: "Farmers Connected" },
+              { number: "500+", label: "Verified Buyers" },
+              { number: "95%", label: "Price Improvement" },
+              { number: "24/7", label: "Support Available" },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="animate-grow"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="text-4xl font-bold mb-2">{stat.number}</div>
+                <div className="text-lg opacity-90">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="agri-card p-8 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-4">
+              Ready to Transform Your Farm?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-6">
+              Join thousands of farmers already benefiting from AI-powered
+              agricultural solutions
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild className="agri-button">
+                <Link href="/auth">Start Your Journey</Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <Link href="/channels">Find Partners</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default Home;
