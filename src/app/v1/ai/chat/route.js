@@ -1,0 +1,91 @@
+import Groq from 'groq-sdk';
+import { NextRequest, NextResponse } from 'next/server';
+
+
+
+
+const RATE_LIMIT_CONFIG = {
+    requests: 10,
+    windowMinutes: 1
+};
+
+export const POST = async (request) => {
+
+    const GROQ_API_KEY = process.env.GROQ_API_KEY;
+    try {
+        /* Rate limiting
+        const clientIP = getClientAddress();
+        if (!rateLimit(clientIP, RATE_LIMIT_CONFIG)) {
+            throw error(429, 'Too many requests');
+        }
+            */
+
+        // Validate environment
+        if (!GROQ_API_KEY) {
+            return NextResponse.json({ error: 'Server configuration error' },{ status: 500 });
+        }
+
+        // Parse and validate request
+        let data;
+        try {
+            data = await request.json();
+        } catch (e) {
+            return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+        }
+
+        let { message } = data;
+
+        const bestModels = [
+            "llama-3.3-70b-versatile",
+            "openai/gpt-oss-120b",
+        ];
+
+        const model = Math.random() > 0.5 ? bestModels[0] : bestModels[1];
+        /*decrypt the message
+        message = decrypt(message);
+        // Validate inputs
+        if (!message?.trim() || typeof message !== 'string') {
+            throw error(400, 'Message is required');
+        }
+            */
+    
+        
+        // Process request
+        const groq = new Groq({ apiKey: GROQ_API_KEY });
+        const completion = await groq.chat.completions.create({
+            messages: [{
+                role: 'user',
+                content: message,
+            }],
+            model: model,
+            temperature: 1,
+            max_tokens: 512,
+        });
+
+        // Validate response
+        if (!completion?.choices?.[0]?.message?.content) {
+            throw error(500, 'Invalid response from AI provider');
+        }
+        return NextResponse.json({
+            success: true,
+            response: completion.choices[0].message.content,
+        });
+
+    } catch (err) {
+        console.error('API Error:', err);
+        
+        // Handle known error types
+        if (err.status && err.body) {
+            return NextResponse.json(
+                { success: false, error: err.body },
+                { status: err.status }
+            );
+        }
+        
+        // Generic server error
+        return NextResponse.json(
+            { success: false, error: 'Internal server error' },
+            { status: 500 }
+        );
+    }
+};

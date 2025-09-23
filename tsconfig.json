@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "src/app/weather/page.jsx",
     "src/components/ui/calendar.jsx",
-    "src/components/ui/chart.jsx"
+    "src/components/ui/chart.jsx",
+    "src/app/v1/ai/chat/+server.js"
   ],
   "exclude": ["node_modules"]
 }
