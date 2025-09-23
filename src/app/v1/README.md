@@ -1,6 +1,6 @@
-# API Development Guide for `/app/api/v1`
+# API Development Guide for `/app/v1`
 
-This guide is for contributors to the project, explaining how to create and manage API routes in the `/app/api/v1` directory using Next.js. The project uses Next.js App Router, and all API routes are defined under `/app/api/v1`.
+This guide is for contributors to the project, explaining how to create and manage API routes in the `/app/v1` directory using Next.js. The project uses Next.js App Router, and all API routes are defined under `/app/v1`.
 
 ## Prerequisites
 
@@ -11,21 +11,21 @@ This guide is for contributors to the project, explaining how to create and mana
 
 ## Overview
 
-In this project, API routes are located in the `/app/api/v1` directory. Each file or dynamic route in this directory defines an endpoint under the `/api/v1` base path. For example, a file at `/app/api/v1/users/route.js` corresponds to the endpoint `/api/v1/users`.
+In this project, API routes are located in the `/app/v1` directory. Each file or dynamic route in this directory defines an endpoint under the `/v1` base path. For example, a file at `/app/v1/users/route.js` corresponds to the endpoint `/v1/users`.
 
 ## Creating an API Route
 
 1. **Add a new route**:
 
-   - Create a new file or folder in `/app/api/v1`. For example, to create an endpoint `/api/v1/example`, create a file named `route.js` in `/app/api/v1/example/`.
+   - Create a new file or folder in `/app/v1`. For example, to create an endpoint `/v1/example`, create a file named `route.js` in `/app/v1/example/`.
    - Define the route handler in `route.js`. Here’s a sample:
 
      ```javascript
-     // app/api/v1/example/route.js
+     // app/v1/example/route.js
      import { NextResponse } from "next/server";
 
      export async function GET() {
-       return NextResponse.json({ message: "Hello from /api/v1/example!" });
+       return NextResponse.json({ message: "Hello from /v1/example!" });
      }
      ```
 
@@ -34,7 +34,7 @@ In this project, API routes are located in the `/app/api/v1` directory. Each fil
    - You can define handlers for different HTTP methods (GET, POST, etc.) in the same file. Example:
 
      ```javascript
-     // app/api/v1/example/route.js
+     // app/v1/example/route.js
      import { NextResponse } from "next/server";
 
      export async function GET() {
@@ -50,10 +50,10 @@ In this project, API routes are located in the `/app/api/v1` directory. Each fil
 
 3. **Dynamic routes**:
 
-   - To create dynamic routes (e.g., `/api/v1/users/[id]`), create a folder with square brackets, like `/app/api/v1/users/[id]/route.js`. Example:
+   - To create dynamic routes (e.g., `/v1/users/[id]`), create a folder with square brackets, like `/app/v1/users/[id]/route.js`. Example:
 
      ```javascript
-     // app/api/v1/users/[id]/route.js
+     // app/v1/users/[id]/route.js
      import { NextResponse } from "next/server";
 
      export async function GET(request, { params }) {
@@ -70,21 +70,21 @@ In this project, API routes are located in the `/app/api/v1` directory. Each fil
      ```bash
      npm run dev
      ```
-   - The API will be available at `http://localhost:3000/api/v1`.
+   - The API will be available at `http://localhost:3000/v1`.
 
 2. **Test endpoints**:
 
    - Use a browser, Postman, or `curl` to test your endpoints. For example:
-     - GET request: `http://localhost:3000/api/v1/example`
+     - GET request: `http://localhost:3000/v1/example`
      - POST request:
        ```bash
-       curl -X POST http://localhost:3000/api/v1/example -H "Content-Type: application/json" -d '{"name":"Alice"}'
+       curl -X POST http://localhost:3000/v1/example -H "Content-Type: application/json" -d '{"name":"Alice"}'
        ```
-     - Dynamic route: `http://localhost:3000/api/v1/users/123`
+     - Dynamic route: `http://localhost:3000/v1/users/123`
 
 3. **Expected responses**:
    - Ensure your API returns appropriate status codes (e.g., 200 for success, 400 for bad requests, 405 for method not allowed).
-   - Example response for a GET request to `/api/v1/example`:
+   - Example response for a GET request to `/v1/example`:
      ```json
      { "message": "This is a GET request" }
      ```
@@ -108,7 +108,7 @@ In this project, API routes are located in the `/app/api/v1` directory. Each fil
     }
   }
   ```
-- **Organize routes**: Keep related routes in subdirectories (e.g., `/app/api/v1/auth/` for authentication-related endpoints).
+- **Organize routes**: Keep related routes in subdirectories (e.g., `/app/v1/auth/` for authentication-related endpoints).
 - **Use TypeScript (if applicable)**: If the project uses TypeScript, ensure your route files have a `.ts` extension and include proper type annotations.
 - **Environment variables**: Store sensitive data (e.g., database credentials) in a `.env.local` file and access them via `process.env`.
 - **Testing**: Write unit tests for your API routes using a framework like Jest, located in the `/tests` directory (if applicable).
@@ -121,7 +121,7 @@ In this project, API routes are located in the `/app/api/v1` directory. Each fil
 
 ## Troubleshooting
 
-- **Route not found**: Ensure the file is named `route.js` and is in the correct directory under `/app/api/v1`.
+- **Route not found**: Ensure the file is named `route.js` and is in the correct directory under `/app/v1`.
 - **Method not allowed**: Verify that the exported function (e.g., `GET`, `POST`) matches the HTTP method you’re testing.
 - **Server errors**: Check the terminal output for errors and ensure all dependencies are installed (`npm install`).
 
